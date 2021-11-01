@@ -1,11 +1,11 @@
 class Api::V1::ArticlesController < Api::V1::BaseController
+  before_action :set_default_request_format
   def index
     @articles = Article.all
   end
 
   def show
     @article = Article.find(params[:id])
-    # 我们现在使用 app/views/api/v1/users/show.json.jbuilder
   end
 
   def create
@@ -26,4 +26,9 @@ class Api::V1::ArticlesController < Api::V1::BaseController
   def article_params
     params.require(:article).permit(:title, :content, :author_id)
   end
+
+  def set_default_request_format
+    request.format = :json unless params[:format]
+  end
+
 end
