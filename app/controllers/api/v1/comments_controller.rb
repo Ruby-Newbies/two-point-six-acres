@@ -9,7 +9,7 @@ class Api::V1::CommentsController < ApplicationController
   end
 
   def create
-    @comment = Comment.new(article_params)
+    @comment = Comment.new(comment_params)
     @comment.save
   end
 
