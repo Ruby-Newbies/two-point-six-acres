@@ -41,13 +41,3 @@ users = User.create([
                               password_digest: "456456",
                             }
                           ])
-authentications = Authentication.login([
-                            {
-                              email: 'test1@columbia.edu',
-                              password: "p1",
-                            },
-                            {
-                              email: 'test2@gmail.edu',
-                              password: "p2",
-                            }
-                          ])
