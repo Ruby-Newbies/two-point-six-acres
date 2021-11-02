@@ -25,8 +25,9 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 
 gem 'rack-cors'
 gem 'jwt'
+gem 'cucumber'
 # Use ActiveModel has_secure_password
- gem 'bcrypt', '~> 3.1.7'
+gem 'bcrypt', '~> 3.1.7'
 
 # Use Unicorn as the app server
 # gem 'unicorn'
@@ -46,3 +47,8 @@ group :development do
 
 end
 
+group :test do
+  gem 'cucumber-rails', require: false
+  # database_cleaner is not mandatory, but highly recommended
+  gem 'database_cleaner'
+end
