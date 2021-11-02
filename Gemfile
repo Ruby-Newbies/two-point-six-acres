@@ -24,6 +24,7 @@ gem 'jbuilder', '~> 2.0'
 gem 'sdoc', '~> 0.4.0', group: :doc
 
 gem 'rack-cors'
+gem 'cucumber'
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
@@ -46,3 +47,8 @@ group :development do
 
 end
 
+group :test do
+  gem 'cucumber-rails', require: false
+  # database_cleaner is not mandatory, but highly recommended
+  gem 'database_cleaner'
+end
