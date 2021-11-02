@@ -29,3 +29,25 @@ comments = Comment.create([
                               content: "hahahah",
                             }
                           ])
+users = User.create([
+                            {
+                              username: 'test1',
+                              email: 'test1@columbia.edu',
+                              password_digest: "123123",
+                            },
+                            {
+                              username: 'test2',
+                              email: 'test2@gmail.edu',
+                              password_digest: "456456",
+                            }
+                          ])
+authentications = Authentication.login([
+                            {
+                              email: 'test1@columbia.edu',
+                              password: "p1",
+                            },
+                            {
+                              email: 'test2@gmail.edu',
+                              password: "p2",
+                            }
+                          ])
