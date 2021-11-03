@@ -30,11 +30,27 @@ RSpec.describe Api::V1::ArticlesController, type: :controller do
     end
   end
 
+  describe "update an existing article" do
+    it "updates the specified article" do
+      response = patch(:update,:id=>2,:article=>{:article_id=>"2",:author_id=>"2",:content=>"newcontent"})
+      puts response
+      expect(response).to have_http_status(200)
+    end
+  end
+
   describe "post an article" do
     it "takes the parameters and return the article just post" do
       # api/v1/articles#create
       response = post(:create,:article=>{:title=>"test_title",:content=>"test_content",:author_id=>4})
       puts response
+    end
+  end
+
+  describe "delete an existing article" do
+    it "deletes specified article" do
+      response = delete :destroy,:id => 2
+      puts response
+      expect(response).to have_http_status(200)
     end
   end
 end

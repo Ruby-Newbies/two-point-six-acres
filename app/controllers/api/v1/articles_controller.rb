@@ -1,5 +1,4 @@
 class Api::V1::ArticlesController < Api::V1::BaseController
-  before_action :set_default_request_format
   def index
     @articles = Article.all
   end
@@ -25,10 +24,6 @@ class Api::V1::ArticlesController < Api::V1::BaseController
 
   def article_params
     params.require(:article).permit(:title, :content, :author_id)
-  end
-
-  def set_default_request_format
-    request.format = :json unless params[:format]
   end
 
 end
