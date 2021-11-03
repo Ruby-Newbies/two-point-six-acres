@@ -29,4 +29,12 @@ RSpec.describe Api::V1::ArticlesController, type: :controller do
       expect(response).to have_http_status(200)
     end
   end
+
+  describe "post an article" do
+    it "takes the parameters and return the article just post" do
+      # api/v1/articles#create
+      response = post(:create,:article=>{:title=>"test_title",:content=>"test_content",:author_id=>4})
+      puts response
+    end
+  end
 end

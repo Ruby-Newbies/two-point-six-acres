@@ -29,4 +29,12 @@ RSpec.describe Api::V1::CommentsController, type: :controller do
       expect(response).to have_http_status(200)
     end
   end
+
+  describe "post a comment" do
+    it "takes the parameters and return the comment just post" do
+      # api/v1/comments#create
+      response = post(:create,:comment=>{:article_id=>3,:author_id=>3,:content=>"comment_content_test"})
+      puts response
+    end
+  end
 end
