@@ -1,7 +1,7 @@
 class Api::V1::ApplicationController < Api::V1::BaseController
 
     def not_found
-      render json: { error: 'not_found' }
+      render json: { error: 'No user' }
     end
   
     def authorize_request

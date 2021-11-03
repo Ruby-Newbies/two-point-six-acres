@@ -3,26 +3,29 @@ class Api::V1::AuthenticationController < ApplicationController
   before_action :authorize_request, except: :login
 
 
-    def login
-      @user = User.find_by_email(params[:email])
-      puts "password=#{params[:password]}"
-      puts "@user.password_digest=#{@user.password_digest}"
-      if @user.password_digest == params[:password]
-        puts "password matched"
-        @token = Token.encode(user_id: @user.email)
-        render json: { token: @token, username: @user.username }, status: :ok
-      else
-        render json: { error: 'unauthorized' }, status: :unauthorized
-      end
+  def login
+    #if params[:email].empty? || params[:password].empty?
+    #  render json: { error: 'Missing input' }, status: :unauthorized
+    #end
+    @user = User.find_by_email(params[:email])
+    #puts "password=#{params[:password]}"
+    #puts "@user.password_digest=#{@user.password_digest}"
+    if @user.password_digest == params[:password]
+      puts "password matched"
+      @token = Token.encode(user_id: @user.email)
+      render json: { token: @token, username: @user.username }, status: :ok
+    else
+      render json: { error: 'Unauthorized' }, status: :unauthorized
     end
-  
-    private
-  
-    def login_params
-      params.permit(:email, :password)
-    end
+  end
 
-    def set_default_request_format
-      request.format = :json unless params[:format]
-    end
+  private
+
+  def login_params
+    params.permit(:email, :password)
+  end
+
+  def set_default_request_format
+    request.format = :json unless params[:format]
+  end
 end
