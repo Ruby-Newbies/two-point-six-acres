@@ -36,7 +36,6 @@ When /I send a get request to users api/ do
 end
 
 Then /I should receive a response with (.*) users/ do | n_seeds |
-  puts @response.body
   expect(JSON.parse(@response.body).size).to eq(n_seeds.to_i)
 end
 
@@ -46,7 +45,6 @@ Then /I click certain user with ID of (.*)/ do | id |
   response = get "/api/v1/users/"+ id.to_s,
                  params: {}.to_json,
                  "Content-Type" => "application/json"
-  puts response.body
   expect(JSON.parse(response.body)["user"]["id"]).to eq(id.to_i)
 end
 
