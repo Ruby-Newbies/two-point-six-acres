@@ -24,3 +24,11 @@ Feature: user login
   Scenario: login with an empty email
     When I post a request to user login api with email "" and password "123456"
     Then I should receive a response with status code "401" with "missing input" in the response body
+
+  Scenario: visit test api with valid token
+    When I get the test api with valid token
+    Then I should receive a response with status code "200" with "success" in the response body
+
+  Scenario: visit test api with invalid token
+    When I get the test api with invalid token
+    Then I should receive a response with status code "401" with "error" in the response body
