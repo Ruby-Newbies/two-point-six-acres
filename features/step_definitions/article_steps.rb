@@ -5,11 +5,13 @@ Given /^the following articles exist:$/ do |articles_table|
 end
 
 Then /(.*) seed articles should exist/ do | n_seeds |
-  assert_equal Article.count, n_seeds.to_i
+  # assert_equal Article.count, n_seeds.to_i
+  expect(Article.count).to eq(n_seeds.to_i)
 end
 
 When /I send a get request to articles api/ do
   # user click comments list button
+
 end
 
 Then /I should receive a response with (.*) articles/ do | n_seeds |
