@@ -24,3 +24,7 @@ Feature: get articles
   Scenario: post a request to delete article
     When I post a request to delete article with article_ID 2
     Then I should receive a response showing the ID of the article deleted: 2
+
+  Scenario: post a request to create an article
+    When I post a request to create an article with title "test_title", content "test_content", and author_id "3"
+    Then I should receive a response showing the new article was posted with title: "test_title"
