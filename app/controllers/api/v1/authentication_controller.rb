@@ -1,4 +1,4 @@
-class Api::V1::AuthenticationController < ApplicationController
+class Api::V1::AuthenticationController < Api::V1::ApplicationController
   skip_before_action :verify_authenticity_token
   before_action :authorize_request, except: :login
 
@@ -17,11 +17,16 @@ class Api::V1::AuthenticationController < ApplicationController
 
     if @user.password_digest == login_params[:password]
       puts "password matched"
-      @token = Token.encode(user_id: @user.email)
+      @token = Token.encode(email: @user.email)
       render json: { token: @token, username: @user.username }, status: :ok
     else
       render json: { error: 'unauthorized' }, status: :unauthorized
     end
+  end
+
+  def test
+    # this method is specifically added to test authorize_request
+    render json: { message: "success" }, status: :ok
   end
 
   private

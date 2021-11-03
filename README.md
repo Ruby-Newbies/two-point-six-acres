@@ -52,8 +52,32 @@ curl -i http://localhost:3000/api/v1/articles/1.json
 # You have to add .json postfix
 ```
 
+## Test
 
+### Cucumber
 
+Before running cucumber tests, run the following command to clear the seed data from the database,
+otherwise the background step of articles.feature would fail:
+```shell
+rake db:reset
+```
+
+Run all cucumber tests:
+```shell
+rake cucumber
+```
+
+### RSpec
+
+Before running rspec tests, run the following command to populate the test database with seed data:
+```shell
+rake db:seed RAILS_ENV=test
+```
+
+Run all rspec tests:
+```shell
+rake spec
+```
 
 ## Deployment
 
