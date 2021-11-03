@@ -6,18 +6,15 @@ Feature: user login
   Background: users in database
   Given the following users exist:
   # TODO: change the following data
-    | title        | rating | director     | release_date |
-    | Star Wars    | PG     | George Lucas |   1977-05-25 |
-    | Blade Runner | PG     | Ridley Scott |   1982-06-25 |
-    | Alien        | R      |              |   1979-05-25 |
-    | THX-1138     | R      | George Lucas |   1971-03-11 |
+    | username | email | password_digest |
+    | test1 | test1@columbia.edu | 123123 |
+    | test2 | test2@columbia.edu | 456456 |
 
   Scenario: login with an existing account
-    # TODO: change the username and password
-    When I post a request to user login api with username "abc" and password "abc"
+    When I post a request to user login api with email "test1@columbia.edu" and password "123123"
     Then I should receive a response saying "login success"
 
   Scenario: login with a non-exist account
     # TODO: change the username and password
-    When I post a request to user login api with username "abc" and password "abc"
+    When I post a request to user login api with email "test3@columbia.edu" and password "abc"
     Then I should receive a response saying "login failed"
