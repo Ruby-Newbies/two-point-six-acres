@@ -18,7 +18,6 @@ end
 When(/^I get the test api with valid token$/) do
   login_resp = post "/api/v1/authentication/login", { :email => "test1@columbia.edu", :password => "123123" }
   token = JSON.parse(login_resp.body)["token"]
-  puts token
   header "Authorization", token
   @response = get "/api/v1/authentication/test"
 end
