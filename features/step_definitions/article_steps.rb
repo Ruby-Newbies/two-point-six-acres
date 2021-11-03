@@ -63,7 +63,6 @@ When /I make a request to update article with article_ID (.*) with (.*)/ do |art
   title = JSON.parse(response1.body)["article"]["title"]
   author_id = JSON.parse(response1.body)["article"]["author_id"]
   @response = patch "/api/v1/articles/"+article_ID.to_s, { :content => new_content.to_s, :title=>title, :author_id => author_id, :id => article_ID.to_s}
-  puts @response.body
 end
 
 Then /^I should receive a response that involves (.*)/ do |new_content|
