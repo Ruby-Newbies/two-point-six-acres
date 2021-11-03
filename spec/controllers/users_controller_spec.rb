@@ -23,6 +23,13 @@ RSpec.describe Api::V1::UsersController, type: :controller do
     end
   end
 
+  describe "get user by id" do
+    it "returns an user with certain id" do
+      response = get :show, id: 1
+      expect(response).to have_http_status(200)
+    end
+  end
+
   describe "new user registration" do
     it "register a new user" do
       # api/v1/users#create
