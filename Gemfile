@@ -52,4 +52,5 @@ group :test do
   gem 'cucumber-rails', require: false
   # database_cleaner is not mandatory, but highly recommended
   gem 'database_cleaner'
+  gem 'simplecov', '0.16.1'
 end
