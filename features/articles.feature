@@ -1,6 +1,6 @@
 Feature: get articles
 
-  As a user of 2 point 3 acres
+  As a user of 2 point 6 acres
   I want to retrieve all articles or just retrieve an article by its id
 
   Background: articles in database
