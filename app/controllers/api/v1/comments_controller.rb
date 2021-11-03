@@ -16,6 +16,11 @@ class Api::V1::CommentsController < Api::V1::BaseController
 
   def destroy
     @comment = Comment.find(params[:id])
+    if @comment.nil?
+      puts "comment not found"
+      render json: { error: 'wrong comment id' }, status: :wrongid
+      return
+    end
     @comment.destroy
   end
 

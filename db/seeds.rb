@@ -19,12 +19,12 @@ comments = Comment.create([
                               content: "Great",
                             },
                             {
-                              article_id: 1,
+                              article_id: 2,
                               author_id: 2,
                               content: "wwwwwwww",
                             },
                             {
-                              article_id: 2,
+                              article_id: 3,
                               author_id: 1,
                               content: "hahahah",
                             }
