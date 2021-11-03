@@ -42,3 +42,11 @@ end
 Then /^I should receive a response showing the ID of the comment deleted: (.*)/ do |comment_ID|
   expect(JSON.parse(@response.body)["comment"]["id"]).to eq(comment_ID.to_i)
 end
+
+When(/^I post a request to create a comment after article "(.*)" with content "(.*)", and author_id "(.*)"$/) do |article_id, content, author_id|
+  @response = post "/api/v1/comments", :comment => { :article_id => article_id, :content => content, :author_id => author_id }
+end
+
+Then /^I should receive a response showing the new comment was posted with content: (.*)/ do |content|
+  expect(@response.body).to include(content)
+end

@@ -46,3 +46,11 @@ end
 # Then(/^I should receive a response saying "(.*)"$/) do |message|
 #
 # end
+When(/^I post a request to create an article with title "(.*)", content "(.*)", and author_id "(.*)"$/) do |title, content, author_id|
+  @response = post "/api/v1/articles", :article => { :title => title, :content => content, :author_id => author_id }
+end
+
+Then /^I should receive a response showing the new article was posted with title: (.*)/ do |title|
+  # expect(JSON.parse(@response.body)["article"]["title"]).to eq(title)
+  expect(@response.body).to include(title)
+end

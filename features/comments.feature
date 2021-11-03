@@ -20,3 +20,7 @@ Feature: comments
   Scenario: post a request to delete comment
     When I post a request to delete comment with comment_ID 2
     Then I should receive a response showing the ID of the comment deleted: 2
+
+  Scenario: post a request to add a comment
+    When I post a request to create a comment after article "2" with content "test_comemnt_content", and author_id "3"
+    Then I should receive a response showing the new comment was posted with content: "test_comemnt_content"

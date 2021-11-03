@@ -26,3 +26,13 @@ When(/^I get the test api with invalid token$/) do
   header "Authorization", "someinvalidtoken"
   @response = get "/api/v1/authentication/test"
 end
+
+When(/^I post a request to register with username "(.*)" , email "(.*)", and password_digest "(.*)"$/) do |username, email, password_digest|
+  # @response = post "/api/v1/users", :user => { :username => username, :email => email, :password_digest => password_digest}
+  @response = post "/api/v1/users", :username => username, :email => email, :password_digest => password_digest
+end
+
+Then /^I should receive a response showing the new user was created with username: (.*)/ do |username|
+  # expect(JSON.parse(@response.body)["article"]["title"]).to eq(title)
+  expect(@response.body).to include(username)
+end
