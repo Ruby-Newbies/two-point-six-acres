@@ -7,6 +7,7 @@ Rails.application.routes.draw do
       resources :comments, only: [:index, :create, :show, :destroy]
       resources :users, only: [:index, :show, :create]
       post '/authentication/login', to: 'authentication#login'
+      get '/authentication/test', to: 'authentication#test'
       # resources :microposts, only: [:index, :create, :show, :update, :destroy]
       # resources :sessions, only: [:create]
       # scope path: '/user/:user_id' do
