@@ -15,25 +15,25 @@ if RUBY_VERSION>='2.6.0'
   end
 end
 
-RSpec.describe Api::V1::ArticlesController, type: :controller do
-  describe "list articles" do
-    it "returns the list of articles" do
+RSpec.describe Api::V1::CommentsController, type: :controller do
+  describe "list comments" do
+    it "returns the list of comments" do
       response = get :index
       expect(response).to have_http_status(200)
     end
   end
 
-  describe "get article by id" do
-    it "returns an article with certain id" do
+  describe "get comment by id" do
+    it "returns an comment with certain id" do
       response = get :show, id: 1
       expect(response).to have_http_status(200)
     end
   end
 
-  describe "post an article" do
-    it "takes the parameters and return the article just post" do
-      # api/v1/articles#create
-      response = post(:create,:article=>{:title=>"test_title",:content=>"test_content",:author_id=>4})
+  describe "post a comment" do
+    it "takes the parameters and return the comment just post" do
+      # api/v1/comments#create
+      response = post(:create,:comment=>{:article_id=>3,:author_id=>3,:content=>"comment_content_test"})
       puts response
     end
   end

@@ -15,25 +15,18 @@ if RUBY_VERSION>='2.6.0'
   end
 end
 
-RSpec.describe Api::V1::ArticlesController, type: :controller do
-  describe "list articles" do
-    it "returns the list of articles" do
+RSpec.describe Api::V1::UsersController, type: :controller do
+  describe "list users" do
+    it "returns the list of users" do
       response = get :index
       expect(response).to have_http_status(200)
     end
   end
 
-  describe "get article by id" do
-    it "returns an article with certain id" do
-      response = get :show, id: 1
-      expect(response).to have_http_status(200)
-    end
-  end
-
-  describe "post an article" do
-    it "takes the parameters and return the article just post" do
-      # api/v1/articles#create
-      response = post(:create,:article=>{:title=>"test_title",:content=>"test_content",:author_id=>4})
+  describe "new user registration" do
+    it "register a new user" do
+      # api/v1/users#create
+      response = post(:create,:user=>{:username=>"test3",:email=>"test3@columbia.edu",:password_digest=>"test3test3"})
       puts response
     end
   end
