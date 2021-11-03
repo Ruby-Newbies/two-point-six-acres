@@ -22,4 +22,12 @@ RSpec.describe Api::V1::UsersController, type: :controller do
       expect(response).to have_http_status(200)
     end
   end
+
+  describe "new user registration" do
+    it "register a new user" do
+      # api/v1/users#create
+      response = post(:create,:user=>{:username=>"test3",:email=>"test3@columbia.edu",:password_digest=>"test3test3"})
+      puts response
+    end
+  end
 end
