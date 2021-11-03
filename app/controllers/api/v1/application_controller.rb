@@ -17,7 +17,4 @@ class Api::V1::ApplicationController < Api::V1::BaseController
       end
     end
 
-    def set_default_request_format
-        request.format = :json unless params[:format]
-    end
   end

@@ -1,6 +1,5 @@
 class Api::V1::CommentsController < Api::V1::BaseController
 # class Api::V1::CommentsController < ApplicationController
-  before_action :set_default_request_format
   def index
     @comments = Comment.all
   end
@@ -28,7 +27,4 @@ class Api::V1::CommentsController < Api::V1::BaseController
     params.require(:comment).permit(:article_id, :author_id, :content,)
   end
 
-  def set_default_request_format
-    request.format = :json unless params[:format]
-  end
 end

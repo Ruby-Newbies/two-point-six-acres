@@ -37,4 +37,13 @@ RSpec.describe Api::V1::CommentsController, type: :controller do
       puts response
     end
   end
+
+  describe "delete an existing comment" do
+    it "finds the comment and delete it" do
+      response = delete :destroy,
+                        { :id => 1 }
+      puts response.body
+      expect(response).to have_http_status(200)
+    end
+  end
 end

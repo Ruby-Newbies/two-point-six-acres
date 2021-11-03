@@ -1,6 +1,6 @@
 class Api::V1::AuthenticationController < ApplicationController
   skip_before_action :verify_authenticity_token
-  before_action :authorize_request, except: :login
+  before_action except: :login
 
 
   def login
@@ -28,9 +28,5 @@ class Api::V1::AuthenticationController < ApplicationController
 
   def login_params
     params.permit(:email, :password)
-  end
-
-  def set_default_request_format
-    request.format = :json unless params[:format]
   end
 end
