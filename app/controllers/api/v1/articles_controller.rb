@@ -14,7 +14,7 @@ class Api::V1::ArticlesController < Api::V1::BaseController
 
   def update
       @article = Article.find(params[:id])
-      @article.update_attributes(article_params)
+      @article.update(article_params)
   end
 
   def destroy
@@ -23,7 +23,7 @@ class Api::V1::ArticlesController < Api::V1::BaseController
   end
 
   def article_params
-    params.require(:article).permit(:title, :content, :author_id)
+    params.permit(:title, :content, :author_id)
   end
 
 end
