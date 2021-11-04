@@ -23,7 +23,7 @@ class Api::V1::ArticlesController < Api::V1::BaseController
   end
 
   def article_params
-    params.permit(:title, :content, :author_id)
+    params.require(:article).permit(:title, :content, :author_id)
   end
 
 end
