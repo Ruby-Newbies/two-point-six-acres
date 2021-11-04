@@ -67,7 +67,11 @@ Run all cucumber tests:
 rake cucumber
 ```
 
-### RSpec
+Cucumber test coverage:
+![coverage stats 1](./cucumber-coverage-1.png)
+![coverage stats 2](./cucumber-coverage-2.png)
+
+### Rspec
 
 Before running rspec tests, run the following command to populate the test database with seed data:
 ```shell
@@ -78,6 +82,10 @@ Run all rspec tests:
 ```shell
 rake spec
 ```
+
+Rspec test coverage:
+![coverage stats 1](./rspec-coverage-1.png)
+![coverage stats 1](./rspec-coverage-2.png)
 
 ## Deployment
 
