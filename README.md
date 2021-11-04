@@ -114,7 +114,6 @@ As users of 2 point 6 acres, currently they can enjoy following features:
 
 ### Features regarding articles
 
-As a user of 2 point 6 acres:
 1. User can retrieve all articles or just retrieve an article by its id.
 2. User can express my latest idea and correct mistakes so I want to update my article.
 3. User can also delete certain article.
