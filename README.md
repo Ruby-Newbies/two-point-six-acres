@@ -12,9 +12,9 @@ A Forum Specially Designed for Foreign Students in the U.S.
 | Yifan Zhang  | yz3959 |
 
 ## Development
+Frontend: https://github.com/Ruby-Newbies/2point6acres-frontend
 
-Github: https://github.com/Ruby-Newbies/two-point-six-acres
-
+Backend: https://github.com/Ruby-Newbies/two-point-six-acres
 
 
 ## How to Start
