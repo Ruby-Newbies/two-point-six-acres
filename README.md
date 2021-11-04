@@ -81,4 +81,4 @@ rake spec
 
 ## Deployment
 
-Heroku Link: 
+Heroku endpoint (backend) :  https://mysterious-gorge-21193.herokuapp.com
