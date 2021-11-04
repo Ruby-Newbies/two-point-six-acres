@@ -14,6 +14,8 @@ A Forum Specially Designed for Foreign Students in the U.S.
 
 ## How to Start
 
+### Backend:
+
 Install gems:
 ```shell
 bundle install  
@@ -46,6 +48,23 @@ Check API using curl:
 curl -i http://localhost:3000/api/v1/articles/1.json
 # You have to add .json postfix
 ```
+
+### Frontend:
+
+#### Before Run
+- Clone or download this repository
+- Enter your local directory, and install dependencies:
+
+``` bash
+npm install
+```
+
+#### Run
+``` bash
+# serve with hot reload at localhost:8010
+npm run dev
+```
+
 
 ## Test
 
