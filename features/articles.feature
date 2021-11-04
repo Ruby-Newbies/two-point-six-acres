@@ -1,9 +1,10 @@
-Feature: get articles
+Feature: functions regarding articles: create, get, update and delete articles
 
   As a user of 2 point 6 acres
   1. I can retrieve all articles or just retrieve an article by its id.
   2. I can express my latest idea and correct mistakes so I want to update my article.
   3. I can also delete certain article.
+  4. I can also create a new article.
 
   Background: articles in database
   Given the following articles exist

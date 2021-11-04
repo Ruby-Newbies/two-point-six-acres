@@ -2,6 +2,8 @@ Feature: user login
 
   As a user of 2 point 6 acres
   I want to login with my own account by username and password
+  As a new user
+  I want to register with username, email, and password_digest
 
   Background: users in database
   Given the following users exist:

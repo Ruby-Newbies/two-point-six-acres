@@ -2,6 +2,7 @@ Feature: user login
 
   As a user of 2 point 6 acres
   I want to login with my own account by username and password
+  I want to successfully access protected rest API if I have logged in
 
   Background: users in database
   Given the following users exist:
@@ -32,12 +33,3 @@ Feature: user login
   Scenario: visit test api with invalid token
     When I get the test api with invalid token
     Then I should receive a response with status code "401" with "error" in the response body
-
-  Scenario: get user list and detail
-    When I send a get request to users api
-    Then I should receive a response with 2 users
-    Then I click certain user with ID of 1
-
-  Scenario: register to create a new user
-    When I post a request to register with username "test3" , email "test3@columbia.edu", and password_digest "789789"
-    Then I should receive a response showing the new user was created with username: "test3"
