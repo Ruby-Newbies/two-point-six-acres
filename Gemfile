@@ -3,13 +3,7 @@ source 'https://rubygems.org'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.2.11'
-# Use sqlite3 as the database for Active Record
-group :development, :test do
-  gem 'sqlite3', '~> 1.3.13'
-end
-group :production do
-  gem 'pg'
-end
+
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 5.0'
 # Use Uglifier as compressor for JavaScript assets
@@ -59,4 +53,8 @@ group :test do
   gem 'cucumber-rails-training-wheels'
   gem 'database_cleaner'
   gem 'simplecov', :require => false
+end
+
+group :production do
+  gem 'pg'
 end
