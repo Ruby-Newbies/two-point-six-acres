@@ -1,11 +1,11 @@
-Feature: comments
+Feature: functions regarding comments: add, get and delete comments
 
-  As a user of 2 point 3 acres
+  As a user of 2 point 6 acres
   1. I can retrieve all comments or just retrieve a comment by its author_id.
-  2. I can avoid outdated comment and mistakes to affect others.
-  3. I want to delete my comment.
+  2. I can add a comment to certain article to make discussion.
+  3. I can avoid outdated comment and mistakes to affect others by deleting my comment.
 
-  Background: comments in database
+  Background: comments are already in database
   Given the following comments exist
     | id  | article_id | author_id | content   |
     | 1   | 1          | 1         | Great     |
