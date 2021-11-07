@@ -32,7 +32,7 @@ RSpec.describe Api::V1::ArticlesController, type: :controller do
 
   describe "update an existing article" do
     it "updates the specified article" do
-      response = patch(:update,:id=>2,:article=>{:article_id=>"2",:author_id=>"2",:content=>"newcontent"})
+      response = patch(:update,:id=>2,:article=>{:article_id=>"2",:author_id=>"2",:content=>"newcontent", :section_id=>"2"})
       puts response
       expect(response).to have_http_status(200)
     end
@@ -41,7 +41,7 @@ RSpec.describe Api::V1::ArticlesController, type: :controller do
   describe "post an article" do
     it "takes the parameters and return the article just post" do
       # api/v1/articles#create
-      response = post(:create,:article=>{:title=>"test_title",:content=>"test_content",:author_id=>4})
+      response = post(:create,:article=>{:title=>"test_title",:content=>"test_content",:author_id=>4, :section_id=>4,})
       puts response
     end
   end
