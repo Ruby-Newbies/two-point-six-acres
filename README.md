@@ -119,19 +119,19 @@ As users of 2 point 6 acres, currently they can enjoy following features:
 
 ### Features regarding users
 1. As new users, they can register with username, email, and password.
-2. Users can login with their own account by username and password.
+2. Users can login with their own accounts with username and password.
 3. Users will have protected rest APIs if they have logged in.
 
 ### Features regarding articles
 
-1. User can retrieve all articles or just retrieve an article by its id.
-2. User can express my latest idea and correct mistakes so I want to update my article.
-3. User can also delete certain article.
-4. User can also create a new article.
+1. Users can retrieve all articles or retrieve only one article by specifying article id.
+2. Users can create new articles.
+3. Users can delete a specified article.
+4. Users can express latest idea and correct mistakes by updating existing articles.
 
 ### Features regarding comments
 
-1. User can retrieve all comments or just retrieve a comment by its author_id.
-2. User can add a comment to certain article to make discussion.
-3. User can avoid outdated comment and mistakes to affect others by deleting my comment.
+1. Users can retrieve all comments or only one comment by specifying comment id.
+2. Users can add a comment to certain article to make discussion.
+3. Users can avoid outdated comment and mistakes to affect others by deleting existing comments.
 
