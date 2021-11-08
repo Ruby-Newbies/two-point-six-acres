@@ -41,3 +41,11 @@ users = User.create([
                               password_digest: "456456",
                             }
                           ])
+sections = Section.create([
+                            {
+                              title: 'Study'
+                            },
+                            {
+                              title: 'Jobs'
+                            }
+                          ])
