@@ -43,11 +43,9 @@ Then /^I should receive a response showing the ID of the article deleted: (.*)/ 
   expect(JSON.parse(@response.body)["article"]["id"]).to eq(article_ID.to_i)
 end
 
-# Then(/^I should receive a response saying "(.*)"$/) do |message|
-#
-# end
-When(/^I post a request to create an article with title "(.*)", content "(.*)", and author_id "(.*)"$/) do |title, content, author_id|
-  @response = post "/api/v1/articles", :article => { :title => title, :content => content, :author_id => author_id }
+
+When(/^I post a request to create an article with title "(.*)", content "(.*)", author_id "(.*)", and section_id "(.*)"$/) do |title, content, author_id, section_id|
+  @response = post "/api/v1/articles", :article => { :title => title, :content => content, :author_id => author_id, :section_id => section_id }
 end
 
 Then /^I should receive a response showing the new article was posted with title: (.*)/ do |title|
@@ -62,7 +60,8 @@ When /I make a request to update article with article_ID (.*) with (.*)/ do |art
                "Content-Type" => "application/json"
   title = JSON.parse(response1.body)["article"]["title"]
   author_id = JSON.parse(response1.body)["article"]["author_id"]
-  @response = patch "/api/v1/articles/"+article_ID.to_s, :article => { :content => new_content.to_s, :title=>title, :author_id => author_id, :id => article_ID.to_s}
+  section_id = JSON.parse(response1.body)["article"]["section_id"]
+  @response = patch "/api/v1/articles/"+article_ID.to_s, :article => { :content => new_content.to_s, :title=>title, :author_id => author_id, :id => article_ID.to_s, :section_id => section_id}
 end
 
 Then /^I should receive a response that involves (.*)/ do |new_content|

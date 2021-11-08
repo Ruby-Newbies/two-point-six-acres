@@ -1,7 +1,8 @@
 class Api::V1::CommentsController < Api::V1::BaseController
-# class Api::V1::CommentsController < ApplicationController
   def index
-    @comments = Comment.all
+    # http://localhost:3000/api/v1/comments?article_id=2
+    @comments_of_the_article_to_show = params[:article_id]
+    @comments = Comment.with_article_id(@comments_of_the_article_to_show)
   end
 
   def show

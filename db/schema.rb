@@ -19,6 +19,7 @@ ActiveRecord::Schema.define(version: 20211108190232) do
     t.integer  "author_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer  "section_id"
   end
 
   create_table "comments", force: :cascade do |t|
