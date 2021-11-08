@@ -1,3 +1,3 @@
 json.article do
-  json.(@article, :id, :title, :content, :updated_at)
+  json.(@article, :id, :title, :content, :section_id, :updated_at)
 end
