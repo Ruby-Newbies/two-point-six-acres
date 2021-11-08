@@ -18,7 +18,7 @@ class Api::V1::AuthenticationController < Api::V1::ApplicationController
     if @user.password_digest == login_params[:password]
       puts "password matched"
       @token = Token.encode(email: @user.email)
-      render json: { token: @token, username: @user.username }, status: :ok
+      render json: { token: @token, username: @user.username, id: @user.id }, status: :ok
     else
       render json: { error: 'unauthorized' }, status: :unauthorized
     end
