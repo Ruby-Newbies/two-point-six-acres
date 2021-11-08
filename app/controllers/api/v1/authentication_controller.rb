@@ -19,6 +19,7 @@ class Api::V1::AuthenticationController < Api::V1::ApplicationController
       puts "password matched"
       @token = Token.encode(email: @user.email)
       render json: { token: @token, username: @user.username, id: @user.id }, status: :ok
+      session[:currentuser] = @user.email
     else
       render json: { error: 'unauthorized' }, status: :unauthorized
     end
