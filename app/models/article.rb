@@ -1,4 +1,6 @@
 class Article < ActiveRecord::Base
+  belongs_to :section
+
   def self.with_section(section_to_show)
     if section_to_show.nil?
       return Article.all

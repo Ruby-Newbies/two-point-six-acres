@@ -1,5 +1,5 @@
 class Api::V1::UsersController < Api::V1::BaseController
-
+  before_action :require_login
   def index
     @users = User.all
   end

@@ -17,12 +17,17 @@ class Api::V1::AuthenticationController < Api::V1::ApplicationController
 
     if @user.password_digest == login_params[:password]
       puts "password matched"
+      time = Time.now + 72.hours.to_i
       @token = Token.encode(email: @user.email)
-      render json: { token: @token, username: @user.username, id: @user.id }, status: :ok
+      render json: { token: @token, exp: time.strftime("%m-%d-%Y %H:%M"), username: @user.username, id: @user.id }, status: :ok
       session[:currentuser] = @user.email
     else
       render json: { error: 'unauthorized' }, status: :unauthorized
     end
+  end
+
+  def logout
+    session.clear
   end
 
   def test

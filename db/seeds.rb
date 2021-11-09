@@ -51,5 +51,8 @@ sections = Section.create([
                             },
                             {
                               title: 'Jobs'
+                            },
+                            {
+                              title: 'Life'
                             }
                           ])
