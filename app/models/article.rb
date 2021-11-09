@@ -1,5 +1,6 @@
 class Article < ActiveRecord::Base
   belongs_to :section
+  has_many :comments, dependent: :delete_all
 
   def self.with_section(section_to_show)
     if section_to_show.nil?
