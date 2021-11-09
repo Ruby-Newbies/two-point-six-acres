@@ -5,7 +5,7 @@ Rails.application.routes.draw do
     namespace :v1 do
       resources :articles, only: [:index, :create, :show, :update, :destroy]
       resources :comments, only: [:index, :create, :show, :destroy]
-      resources :users, only: [:index, :show, :create]
+      resources :users, only: [:index, :show, :create, :update, :destroy]
       resources :sections, only: [:index, :show, :create, :destroy]
       post '/authentication/login', to: 'authentication#login'
       get '/authentication/test', to: 'authentication#test'

@@ -1,5 +1,7 @@
-class Api::V1::UsersController < Api::V1::BaseController
-  before_action :require_login
+class Api::V1::UsersController < Api::V1::ApplicationController
+  #before_action :require_login
+  #skip_before_action :require_login, only: [:create]
+
   def index
     @users = User.all
   end
@@ -20,6 +22,8 @@ class Api::V1::UsersController < Api::V1::BaseController
 
   def update
     @user = User.find(params[:id])
+    # this line for test only
+    session[:currentuser] = @user.email
     if @user.nil?
       puts "user not found"
       render json: { error: 'user not exist' }, status: :wrong_user
@@ -44,8 +48,8 @@ class Api::V1::UsersController < Api::V1::BaseController
       render json: { error: 'unauthorized to delete' }, status: :unauthorized_delete
     end
   end
-  private
 
+  private
   def user_params
     params.permit(
       :username, :email, :password, :password_confirmation, :role)

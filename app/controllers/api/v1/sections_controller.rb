@@ -1,6 +1,6 @@
 class Api::V1::SectionsController < Api::V1::ApplicationController
-  before_action :require_login
-  has_many :articles, :dependent => :delete_all
+  #before_action :require_login
+
   def index
     @sections = Section.all
   end

@@ -1,4 +1,5 @@
 class Api::V1::CommentsController < Api::V1::BaseController
+  #before_action :require_login
   def index
     # http://localhost:3000/api/v1/comments?article_id=2
     @comments_of_the_article_to_show = params[:article_id]
