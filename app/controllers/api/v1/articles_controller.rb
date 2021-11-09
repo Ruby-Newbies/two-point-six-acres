@@ -6,7 +6,8 @@ class Api::V1::ArticlesController < Api::V1::BaseController
     @section_to_show = params[:section_id]
     @author_id_to_show = params[:author_id]
     @articles = Article.with_section(@section_to_show).with_author(@author_id_to_show).offset(@page * @article_per_page).limit(@article_per_page)
-    render json: {:page=>@page, :limit=>@article_per_page, :articles=>@articles}.to_json
+    @total = Article.all.length()
+    render json: {:page=>@page, :limit=>@article_per_page, :total=>@total, :articles=>@articles}.to_json
   end
 
   def show
