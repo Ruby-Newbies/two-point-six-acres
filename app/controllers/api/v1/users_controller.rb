@@ -1,5 +1,5 @@
 class Api::V1::UsersController < Api::V1::BaseController
-
+  before_action :require_login
   def index
     @users = User.all
   end
@@ -9,21 +9,47 @@ class Api::V1::UsersController < Api::V1::BaseController
   end
 
   def create
-    @user = User.new(user_params)
+    @email = params[:email]
+    if @email =~ /(.*)@(.*)\.edu$/i
+      params[:email] = @email
+      @user = User.new(user_params)
+    else
+      render json: { error: 'unauthorized email' }, status: :unauthorized_email
+    end
   end
 
-  private
+  def update
+    @user = User.find(params[:id])
+    if @user.nil?
+      puts "user not found"
+      render json: { error: 'user not exist' }, status: :wrong_user
+      return
+    elsif @user.email == session[:currentuser]
+      @user.update(user_params)
+    else
+      render json: { error: 'unauthorized to update' }, status: :unauthorized_update
+    end
+  end
 
-  # def find_user
-  #   @user = User.find_by_username(params[:_username])
-  #   rescue ActiveRecord::RecordNotFound
-  #     render json: { errors: 'No user' }, status: :not_found
-  # end
+  def destroy
+    @user = User.find(params[:id])
+    if @user.nil?
+      puts "user not found"
+      render json: { error: 'user not exist' }, status: :wrong_user
+      return
+    end
+    if User.find_by_email(session[:currentuser]).role == 'admin'
+      @user.destroy
+    else
+      render json: { error: 'unauthorized to delete' }, status: :unauthorized_delete
+    end
+  end
+  private
 
   def user_params
     params.permit(
-      :username, :email, :password, :password_confirmation
-    )
+      :username, :email, :password, :password_confirmation, :role)
+      .with_defaults(role: 'usr')
   end
 
 end

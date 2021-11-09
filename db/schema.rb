@@ -17,6 +17,7 @@ ActiveRecord::Schema.define(version: 20211108190232) do
     t.string   "title"
     t.string   "content"
     t.integer  "author_id"
+    t.belongs_to :section, foreign_key: true
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer  "section_id"
@@ -26,6 +27,7 @@ ActiveRecord::Schema.define(version: 20211108190232) do
     t.integer  "article_id"
     t.integer  "author_id"
     t.string   "content"
+    t.belongs_to :article, foreign_key: true
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -40,6 +42,7 @@ ActiveRecord::Schema.define(version: 20211108190232) do
     t.string   "username"
     t.string   "email"
     t.string   "password_digest"
+    t.string   "role"
     t.datetime "created_at",      null: false
     t.datetime "updated_at",      null: false
   end
