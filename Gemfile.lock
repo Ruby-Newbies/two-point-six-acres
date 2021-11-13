@@ -124,7 +124,6 @@ GEM
     nokogiri (1.12.5)
       mini_portile2 (~> 2.6.1)
       racc (~> 1.4)
-    pg (0.21.0)
     public_suffix (4.0.6)
     racc (1.6.0)
     rack (1.6.13)
@@ -240,7 +239,6 @@ DEPENDENCIES
   jbuilder (~> 2.0)
   jquery-rails
   jwt
-  pg (~> 0.20)
   rack-cors
   rails (= 4.2.11)
   rspec-rails (= 3.7.2)
