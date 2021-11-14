@@ -26,7 +26,7 @@ class Api::V1::ArticlesController < Api::V1::BaseController
     else
       render json: { error: 'unauthorized create' }, status: :unauthorized_create
     end
-    @article.save
+    # @article.save
   end
 
   def update
