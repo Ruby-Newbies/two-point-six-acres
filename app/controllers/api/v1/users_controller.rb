@@ -21,14 +21,17 @@ class Api::V1::UsersController < Api::V1::ApplicationController
   end
 
   def update
-    @user = User.find(params[:id])
-    # this line for test only
-    session[:currentuser] = @user.email
-    if @user.nil?
-      puts "user not found"
-      render json: { error: 'user not exist' }, status: :wrong_user
+    begin
+      @user = User.find(params[:id])
+    rescue ActiveRecord::RecordNotFound => exception
+      render json: { errors: exception.message }, status: :wrong_user
       return
-    elsif @user.email == session[:currentuser]
+    end
+    @current_user = User.authorize(request)
+    if @current_user.nil?
+      render json: { error: 'unauthorized to update' }, status: :unauthorized_update
+      return
+    elsif @user.email == @current_user.email
       @user.update(user_params)
     else
       render json: { error: 'unauthorized to update' }, status: :unauthorized_update
@@ -36,13 +39,18 @@ class Api::V1::UsersController < Api::V1::ApplicationController
   end
 
   def destroy
-    @user = User.find(params[:id])
-    if @user.nil?
-      puts "user not found"
-      render json: { error: 'user not exist' }, status: :wrong_user
+    begin
+      @user = User.find(params[:id])
+    rescue ActiveRecord::RecordNotFound => exception
+      render json: { errors: exception.message }, status: :wrong_user
       return
     end
-    if User.find_by_email(session[:currentuser]).role == 'admin'
+    @current_user = User.authorize(request)
+    if @current_user.nil?
+      render json: { error: 'unauthorized to delete' }, status: :unauthorized_delete
+      return
+    end
+    if @current_user.role == 'admin'
       @user.destroy
     else
       render json: { error: 'unauthorized to delete' }, status: :unauthorized_delete

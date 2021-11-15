@@ -20,15 +20,14 @@ class Api::V1::AuthenticationController < Api::V1::ApplicationController
       time = Time.now + 72.hours.to_i
       @token = Token.encode(email: @user.email)
       render json: { token: @token, exp: time.strftime("%m-%d-%Y %H:%M"), username: @user.username, id: @user.id }, status: :ok
-      session[:currentuser] = @user.email
     else
       render json: { error: 'unauthorized' }, status: :unauthorized
     end
   end
 
-  def logout
-    session.clear
-  end
+  #def logout
+  #  session.clear
+  #end
 
   def test
     # this method is specifically added to test authorize_request
