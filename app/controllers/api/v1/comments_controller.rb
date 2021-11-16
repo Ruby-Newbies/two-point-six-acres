@@ -20,15 +20,16 @@ class Api::V1::CommentsController < Api::V1::ApplicationController
     begin
       @comment = Comment.find(params[:id])
     rescue ActiveRecord::RecordNotFound => exception
-      render json: { errors: exception.message }, status: :unauthorized
+      render json: { errors: exception.message }, status: :bad_request
       return
     end
 
-    if @current_user.role=="admin"
-      @comment.destroy
-    else
-      render json: { error: 'unauthorized to delete' }, status: :unauthorized
-    end
+    # if @current_user.role=="admin"
+    #   @comment.destroy
+    # else
+    #   render json: { error: 'unauthorized to delete' }, status: :unauthorized
+    # end
+    @comment.destroy
   end
 
   def comment_params
