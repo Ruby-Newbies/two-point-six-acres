@@ -1,6 +1,6 @@
 class Api::V1::CommentsController < Api::V1::ApplicationController
   # before_action :require_login
-  before_action :authorize_request
+  before_action :authorize_request, except: [:index, :show]
   def index
     # http://localhost:3000/api/v1/comments?article_id=2
     @comments_of_the_article_to_show = params[:article_id]
