@@ -16,6 +16,10 @@ Feature: functions regarding articles: create, get, update and delete articles
   Scenario: get article list and detail
     When I send a get request to articles api
     Then I should receive a response with 2 articles
+    When I send a get list request to articles api with author_ID 1
+    Then I should receive a response with 1 articles
+    When I send a get list request to articles api with section_ID 1
+    Then I should receive a response with 1 articles
     Then I click certain article with ID of 1
 
   Scenario: post a request to update article
