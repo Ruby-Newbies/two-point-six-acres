@@ -1,3 +1,5 @@
+token = "eyJhbGciOiJIUzI1NiJ9.eyJlbWFpbCI6InRlc3QxQGNvbHVtYmlhLmVkdSJ9.j37nJcGK56CcADXw9BFQPuRmjLYuqE3n5-rS8OlOzjI"
+
 Given /the following comments exist/ do |comments_table|
   comments_table.hashes.each do |comment|
     Comment.create comment
@@ -17,6 +19,14 @@ When /I send a get request to comments api/ do
                   "Content-Type" => "application/json"
 end
 
+When /I send a get list request to comments api with article_ID (.*)/ do |article_ID|
+  # user click comments list button
+  # @response = get "/api/v1/comments",
+  #                 params: {}.to_json,
+  #                 "Content-Type" => "application/json"
+  @response = get("/api/v1/comments", {article_id: article_ID})
+end
+
 Then /I should receive a response with (.*) comments/ do | n_seeds |
   expect(JSON.parse(@response.body).size).to eq(n_seeds.to_i)
 end
@@ -33,6 +43,7 @@ end
 # delete steps
 
 When /^I post a request to delete comment with comment_ID (.*)/ do |comment_ID|
+  header "Authorization", token
   @response = delete "/api/v1/comments/"+comment_ID,to_s,
                      params: {}.to_json,
                      "Content-Type" => "application/json"
@@ -43,7 +54,10 @@ Then /^I should receive a response showing the ID of the comment deleted: (.*)/ 
   expect(JSON.parse(@response.body)["comment"]["id"]).to eq(comment_ID.to_i)
 end
 
+# post steps
+
 When(/^I post a request to create a comment after article "(.*)" with content "(.*)", and author_id "(.*)"$/) do |article_id, content, author_id|
+  header "Authorization", token
   @response = post "/api/v1/comments", :comment => { :article_id => article_id, :content => content, :author_id => author_id }
 end
 
