@@ -17,9 +17,4 @@ class Api::V1::ApplicationController < Api::V1::BaseController
     end
   end
 
-  def require_login
-    if session[:currentuser].nil?
-      render json: { errors: 'not login' }, status: :unauthorized
-    end
-  end 
 end
