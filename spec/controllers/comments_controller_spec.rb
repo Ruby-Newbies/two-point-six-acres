@@ -35,7 +35,7 @@ RSpec.describe Api::V1::CommentsController, type: :controller do
     it "takes the parameters and return the comment just post" do
       # api/v1/comments#create
       request.headers['Authorization'] = token
-      response = post(:create,:comment=>{:article_id=>3,:author_id=>3,:content=>"comment_content_test"})
+      response = post(:create, {:article_id=>3,:author_id=>3,:content=>"comment_content_test"})
       expect(response).to have_http_status(200)
       puts response
     end

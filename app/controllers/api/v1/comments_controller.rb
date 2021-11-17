@@ -33,7 +33,7 @@ class Api::V1::CommentsController < Api::V1::ApplicationController
   end
 
   def comment_params
-    params.require(:comment).permit(:article_id, :author_id, :content,)
+    params.permit(:article_id, :author_id, :content,)
   end
 
 end

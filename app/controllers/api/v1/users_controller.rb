@@ -13,8 +13,9 @@ class Api::V1::UsersController < Api::V1::ApplicationController
     if not (@email =~ /(.*)@(.*)\.edu$/i).nil?
       params[:email] = @email
       @user = User.new(user_params)
+      @user.save
     else
-      render json: { error: 'unauthorized email' }, status: :unauthorized
+      render json: { error: 'invalid email' }, status: :bad_request
     end
   end
 

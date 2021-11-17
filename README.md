@@ -111,8 +111,6 @@ Github Link(backend): https://github.com/Ruby-Newbies/two-point-six-acres
 ## Deployment Link
 Heroku endpoint (frontend): https://rocky-retreat-55161.herokuapp.com/#/articles
 
-Heroku endpoint (backend):  https://mysterious-gorge-21193.herokuapp.com
-
 ## Features
 
 As users of 2 point 6 acres, currently they can enjoy following features:

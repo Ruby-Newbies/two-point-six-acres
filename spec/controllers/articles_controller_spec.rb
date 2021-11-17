@@ -58,7 +58,7 @@ RSpec.describe Api::V1::ArticlesController, type: :controller do
     it "takes the parameters and return the article just post" do
       # api/v1/articles#create
       request.headers['Authorization'] = token
-      response = post(:create,article: {title: "test_title",content: "test_content",author_id: 4, section_id: 4,})
+      response = post(:create, {title: "test_title",content: "test_content",author_id: 4, section_id: 4,})
       puts response
     end
   end

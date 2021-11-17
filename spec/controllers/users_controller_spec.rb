@@ -34,16 +34,17 @@ RSpec.describe Api::V1::UsersController, type: :controller do
 
   describe "valid new user registration" do
     it "register a new valid user" do
-      response = post(:create,:user=>{:username=>"test3",:email=>"test3@columbia.edu",:password_digest=>"test3test3"})
+      response = post(:create, {:username=>"test3",:email=>"test3@columbia.edu",:password=>"test3test3",:password_confirmation=>"test3test3"})
       puts response
+      expect(response).to have_http_status(200)
     end
   end
 
   describe "invalid new user registration" do
     it "returns unauthorized error" do
-      response = post(:create,:user=>{:username=>"test4",:email=>"test4@163.com",:password_digest=>"test4test4"})
+      response = post(:create, {:username=>"test4",:email=>"test4@163.com",:password=>"test4test4",:password_confirmation=>"test4test4"})
       puts response
-      expect(response).to have_http_status(401)
+      expect(response).to have_http_status(400)
     end
   end
 
