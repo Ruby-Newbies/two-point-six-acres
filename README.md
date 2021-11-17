@@ -110,6 +110,11 @@ Github Link(backend): https://github.com/Ruby-Newbies/two-point-six-acres
 
 ## Deployment Link
 Heroku endpoint: https://rocky-retreat-55161.herokuapp.com/#/
+The admin console URL is: https://rocky-retreat-55161.herokuapp.com/#/admin
+
+## Available Test Account
+email: test1@columbia.edu
+password: 123123
 
 ## Features
 
@@ -119,13 +124,16 @@ As users of 2 point 6 acres, currently they can enjoy following features:
 1. As new users, they can register with username, email, and password.
 2. Users can login with their own accounts with username and password.
 3. Users will have protected rest APIs if they have logged in.
-4. Admin users can manage all sections, articles and other users.
-5. Normal users can manage articles of themselves.
+4. Normal users can manage articles of themselves.
+5. User registration checks whether the email has .edu suffix. If not, return 400.
+
+### Features regarding admin users
+1. Admin users can manage all sections, articles and other users.
+2. A separate frontend admin console /admin.
 
 ### Features regarding sections
 1. Articles belongs to several sections.
 2. Articles can be filtered according to sections.
-3. Admin user can create and delete sections. (Not completely finished yet)
 
 ### Features regarding articles
 
@@ -134,6 +142,7 @@ As users of 2 point 6 acres, currently they can enjoy following features:
 3. Users can create new articles.
 4. Users can delete a specified article.
 5. Users can express latest idea and correct mistakes by updating existing articles.
+6. Articles contents now support markdown syntax.
 
 ### Features regarding comments
 
