@@ -73,5 +73,14 @@ RSpec.describe Api::V1::UsersController, type: :controller do
       expect(response).to have_http_status(200)
     end
   end
+
+  describe "update a non-existing user" do
+    it "returns 400 bad request error" do
+      request.headers['Authorization'] = token
+      response = patch(:update,id: 10,user: {username: "test10", email: "test10@columbia.edu", password_digest: "test10test10"})
+      puts response
+      expect(response).to have_http_status(400)
+    end
+  end
   
 end
