@@ -109,7 +109,7 @@ Github Link(frontend): https://github.com/Ruby-Newbies/2point6acres-frontend
 Github Link(backend): https://github.com/Ruby-Newbies/two-point-six-acres
 
 ## Deployment Link
-Heroku endpoint (frontend): https://rocky-retreat-55161.herokuapp.com/#/articles
+Heroku endpoint: https://rocky-retreat-55161.herokuapp.com/#/
 
 ## Features
 
@@ -119,17 +119,26 @@ As users of 2 point 6 acres, currently they can enjoy following features:
 1. As new users, they can register with username, email, and password.
 2. Users can login with their own accounts with username and password.
 3. Users will have protected rest APIs if they have logged in.
+4. Admin users can manage all sections, articles and other users.
+5. Normal users can manage articles of themselves.
+
+### Features regarding sections
+1. Articles belongs to several sections.
+2. Articles can be filtered according to sections.
+3. Admin user can create and delete sections. (Not completely finished yet)
 
 ### Features regarding articles
 
 1. Users can retrieve all articles or retrieve only one article by specifying article id.
-2. Users can create new articles.
-3. Users can delete a specified article.
-4. Users can express latest idea and correct mistakes by updating existing articles.
+2. List articles API supports pagination and filtering by author id and section id.
+3. Users can create new articles.
+4. Users can delete a specified article.
+5. Users can express latest idea and correct mistakes by updating existing articles.
 
 ### Features regarding comments
 
 1. Users can retrieve all comments or only one comment by specifying comment id.
-2. Users can add a comment to certain article to make discussion.
-3. Users can avoid outdated comment and mistakes to affect others by deleting existing comments.
+2. Users can retrieve comments of a specific article.
+3. Users can add a comment to certain article to make discussion.
+4. Users can avoid outdated comment and mistakes to affect others by deleting existing comments.
 
