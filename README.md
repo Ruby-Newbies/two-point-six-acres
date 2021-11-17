@@ -127,6 +127,10 @@ As users of 2 point 6 acres, currently they can enjoy following features:
 4. Normal users can manage articles of themselves.
 5. User registration checks whether the email has .edu suffix. If not, return 400.
 
+### Features regarding authentication
+
+1. Almost all REST APIs now requires user authentication. If the user is not logged in, visiting the protected APIs returns 401.
+
 ### Features regarding admin users
 1. Admin users can manage all sections, articles and other users.
 2. A separate frontend admin console /admin.
