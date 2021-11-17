@@ -58,7 +58,7 @@ end
 
 When(/^I post a request to create a comment after article "(.*)" with content "(.*)", and author_id "(.*)"$/) do |article_id, content, author_id|
   header "Authorization", token
-  @response = post "/api/v1/comments", :comment => { :article_id => article_id, :content => content, :author_id => author_id }
+  @response = post "/api/v1/comments", { :article_id => article_id, :content => content, :author_id => author_id }
 end
 
 Then /^I should receive a response showing the new comment was posted with content: (.*)/ do |content|

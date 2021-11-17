@@ -9,10 +9,19 @@ class Api::V1::UsersController < Api::V1::ApplicationController
   end
 
   def create
-    @email = params[:email]
-    if not (@email =~ /(.*)@(.*)\.edu$/i).nil?
-      params[:email] = @email
-      @user = User.new(user_params)
+    if params[:password] != params[:password_confirmation]
+      render json: { error: 'password not match' }, status: :bad_request
+      return
+    end
+
+    if not (params[:email] =~ /(.*)@(.*)\.edu$/i).nil?
+      new_user_params = {
+        :username => user_params[:username],
+        :email => user_params[:email],
+        :password_digest => user_params[:password],
+        :role => user_params[:role]
+      }
+      @user = User.new(new_user_params)
       @user.save
     else
       render json: { error: 'invalid email' }, status: :bad_request
@@ -46,7 +55,7 @@ class Api::V1::UsersController < Api::V1::ApplicationController
   def user_params
     params.permit(
       :username, :email, :password, :password_confirmation, :role)
-      .merge(role: 'usr')
+      .merge(role: 'user')
   end
 
 end

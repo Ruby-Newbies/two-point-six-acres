@@ -15,6 +15,7 @@ class Api::V1::AuthenticationController < Api::V1::ApplicationController
       return
     end
 
+    # if @user.authenticate(login_params[:password])
     if @user.password_digest == login_params[:password]
       puts "password matched"
       time = Time.now + 72.hours.to_i
