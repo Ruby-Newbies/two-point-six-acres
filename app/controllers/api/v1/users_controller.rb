@@ -1,7 +1,5 @@
 class Api::V1::UsersController < Api::V1::ApplicationController
-  #before_action :require_login
-  #skip_before_action :require_login, only: [:create]
-
+  before_action :authorize_request, except: [:index, :show, :create]
   def index
     @users = User.all
   end
@@ -12,11 +10,11 @@ class Api::V1::UsersController < Api::V1::ApplicationController
 
   def create
     @email = params[:email]
-    if @email =~ /(.*)@(.*)\.edu$/i
+    if not (@email =~ /(.*)@(.*)\.edu$/i).nil?
       params[:email] = @email
       @user = User.new(user_params)
     else
-      render json: { error: 'unauthorized email' }, status: :unauthorized_email
+      render json: { error: 'unauthorized email' }, status: :unauthorized
     end
   end
 
@@ -24,44 +22,30 @@ class Api::V1::UsersController < Api::V1::ApplicationController
     begin
       @user = User.find(params[:id])
     rescue ActiveRecord::RecordNotFound => exception
-      render json: { errors: exception.message }, status: :wrong_user
+      puts "user not found"
+      render json: { errors: 'wrong user id' }, status: :bad_request
       return
     end
-    @current_user = User.authorize(request)
-    if @current_user.nil?
-      render json: { error: 'unauthorized to update' }, status: :unauthorized_update
-      return
-    elsif @user.email == @current_user.email
-      @user.update(user_params)
-    else
-      render json: { error: 'unauthorized to update' }, status: :unauthorized_update
-    end
+    #@user.email == @current_user.email
+    @user.update(user_params)
   end
 
   def destroy
     begin
       @user = User.find(params[:id])
     rescue ActiveRecord::RecordNotFound => exception
-      render json: { errors: exception.message }, status: :wrong_user
+      puts "user not found"
+      render json: { error: 'wrong user id' }, status: :bad_request
       return
     end
-    @current_user = User.authorize(request)
-    if @current_user.nil?
-      render json: { error: 'unauthorized to delete' }, status: :unauthorized_delete
-      return
-    end
-    if @current_user.role == 'admin'
-      @user.destroy
-    else
-      render json: { error: 'unauthorized to delete' }, status: :unauthorized_delete
-    end
+    @user.destroy
   end
 
   private
   def user_params
     params.permit(
       :username, :email, :password, :password_confirmation, :role)
-      .with_defaults(role: 'usr')
+      .merge(role: 'usr')
   end
 
 end

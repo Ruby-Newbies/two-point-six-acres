@@ -52,7 +52,7 @@ RSpec.describe Api::V1::CommentsController, type: :controller do
   end
 
   describe "delete a non-existing comment" do
-    it "finds the comment and delete it" do
+    it "returns 400 bad request error" do
       request.headers['Authorization'] = token
       response = delete :destroy,
                         { :id => 5 }

@@ -19,3 +19,16 @@ Feature: user login
   Scenario: register to create a new user
     When I post a request to register with username "test3" , email "test3@columbia.edu", and password_digest "789789"
     Then I should receive a response showing the new user was created with username: "test3"
+  
+  Scenario: post a request to delete an existing user
+    When I post a request to delete user with id "1"
+    Then I should receive a response with status code "200"
+
+  Scenario: post a request to delete a non-existing user
+    When I post a request to delete user with id "50"
+    Then I should receive a response with status code "400"
+
+  Scenario: post a request to update a user
+    When I post a request to update user with id "1" with new username "NewUsernameHere"
+    Then I should receive response that involves NewUsernameHere
+
