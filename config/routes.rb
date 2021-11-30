@@ -8,6 +8,7 @@ Rails.application.routes.draw do
       resources :users, only: [:index, :show, :create, :update, :destroy]
       resources :follows, only: [:index, :create, :destroy]
       resources :sections, only: [:index, :show, :create, :destroy]
+      resources :usermails, only: [:index, :create, :show, :update]
       post '/authentication/login', to: 'authentication#login'
       get '/authentication/test', to: 'authentication#test'
       get '/follows/isFollowed', to: 'follows#isFollowed'
