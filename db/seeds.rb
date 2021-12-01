@@ -48,13 +48,13 @@ users = User.create([
                               username: 'test1',
                               email: 'test1@columbia.edu',
                               password_digest: "123123",
-                              # role: 'admin',
+                              role: 'admin',
                             },
                             {
                               username: 'test2',
                               email: 'test2@gmail.edu',
                               password_digest: "456456",
-                              # role: 'user',
+                              role: 'user',
                             }
                           ])
 
