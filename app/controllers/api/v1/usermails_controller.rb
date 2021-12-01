@@ -1,5 +1,5 @@
 class Api::V1::UsermailsController < Api::V1::ApplicationController
-  # before_action :authorize_request
+  before_action :authorize_request
   def index
     # http://localhost:3000/api/v1/usermails?to_user_id=2
     # http://localhost:3000/api/v1/usermails?page=0&limit=1&to_user_id=2
