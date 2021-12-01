@@ -9,10 +9,6 @@ class Api::V1::UsersController < Api::V1::ApplicationController
   end
 
   def create
-    if params[:password] != params[:password_confirmation]
-      render json: { error: 'password not match' }, status: :bad_request
-      return
-    end
 
     if not (params[:email] =~ /(.*)@(.*)\.edu$/i).nil?
       new_user_params = {
