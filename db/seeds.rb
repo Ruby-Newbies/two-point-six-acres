@@ -48,13 +48,13 @@ users = User.create([
                               username: 'test1',
                               email: 'test1@columbia.edu',
                               password_digest: "123123",
-                              role: 'admin',
+                              # role: 'admin',
                             },
                             {
                               username: 'test2',
                               email: 'test2@gmail.edu',
                               password_digest: "456456",
-                              role: 'user',
+                              # role: 'user',
                             }
                           ])
 
@@ -66,5 +66,20 @@ follows = Follow.create([
                       {
                         user_id: '2',
                         follower_id: '1',
+                      }
+                    ])
+
+usermails = Usermail.create([
+                      {
+                        from_user_id: 1,
+                        to_user_id: 2,
+                        content: "message from 1 to 2",
+                        status: 1,
+                      },
+                      {
+                        from_user_id: 2,
+                        to_user_id: 1,
+                        content: "message from 2 to 1",
+                        status: 0,
                       }
                     ])
