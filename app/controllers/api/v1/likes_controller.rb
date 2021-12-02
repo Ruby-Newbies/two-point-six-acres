@@ -1,68 +1,45 @@
 class Api::V1::LikesController < Api::V1::ApplicationController
-    before_action :authorize_request, except: [:index, :create, :destroy, :countLikes]
-    def index
-      if params[:user_id].nil? and params[:article_id].nil?
-        q = nil
-      elsif params[:article_id].nil?
-        q = "select * from likes where user_id=" + params[:user_id].to_s
-      elsif params[:user_id].nil?
-        q = "select * from likes where article_id=" + params[:article_id].to_s
-      end
-  
-      if q.nil?
-        @result = Like.all
-      else
-        @result = Like.connection.select_all(q).to_hash
-      end
-      render json: {:likes=>@result}.to_json
-    end
-  
-    def create
-      @like = Like.find_by(user_id: params[:user_id], article_id: params[:article_id])
-      if @like.nil?
-        @like = Like.new(like_params)
-        @like.save
-        return
-      end
-      render json: { error: 'already liked/disliked' }, status: :bad_request
-    end
-  
-    def destroy
-      @like = Like.find_by(user_id: params[:user_id], article_id: params[:article_id], kind: params[:kind])
-      @like.destroy
-    end
+  before_action :authorize_request, except: [:create, :countLikes, :liked]
 
-    def countLikes
-      # filter on user_id, article_id and kind
-      if not params[:kind].nil?
-        if params[:user_id].nil? and params[:article_id].nil?
-          q = "select count(*) from likes and kind=" + params[:kind].to_s
-        elsif params[:article_id].nil?
-          q = "select count(*) from likes where user_id=" + params[:user_id].to_s + " and kind=" + params[:kind].to_s
-        elsif params[:user_id].nil?
-          q = "select count(*) from likes where article_id=" + params[:article_id].to_s + " and kind=" + params[:kind].to_s
-        else
-          q = "select count(*) from likes where user_id=" + params[:user_id].to_s + 
-          " and article_id=" + params[:article_id].to_s  + " and kind=" + params[:kind].to_s
-        end
-      else
-        if params[:user_id].nil? and params[:article_id].nil?
-          q = "select count(*) from likes"
-        elsif params[:article_id].nil?
-          q = "select count(*) from likes where user_id=" + params[:user_id].to_s
-        elsif params[:user_id].nil?
-          q = "select count(*) from likes where article_id=" + params[:article_id].to_s
-        else
-          q = "select count(*) from likes where user_id=" + params[:user_id].to_s + 
-          " and article_id=" + params[:article_id].to_s
-        end
-      end
-      @result = Like.connection.select_all(q)
-      render json: {:count=>@result}.to_json
+  def create
+    if params[:user_id].nil? or params[:article_id].nil? or params[:kind].nil?
+      render json: { error: 'missing input' }, status: :bad_request
+      return
     end
-
-    def like_params
-      params.permit(:user_id, :article_id, :kind,)
+    @like = Like.find_by(user_id: params[:user_id], article_id: params[:article_id])
+    if @like.nil?
+      @like = Like.new(like_params)
+      @like.save
+      return
     end
-  
+    render json: { error: 'already liked/disliked' }, status: :bad_request
   end
+
+  def countLikes
+    # filter on article_id and kind
+    if params[:article_id].nil? or params[:kind].nil?
+      render json: { errors: 'wrong condition' }, status: :bad_request
+      return
+    end
+    @result = Like.where(article_id: params[:article_id], kind: params[:kind]).count
+    render json: {:count=>@result}.to_json
+  end
+
+  def liked
+    if params[:user_id].nil? or params[:article_id].nil?
+      render json: { errors: 'wrong condition' }, status: :bad_request
+      return
+    end
+    @like = Like.find_by(user_id: params[:user_id], article_id: params[:article_id])
+    if @like.nil?
+      render json: {:kind=>0}.to_json
+    else
+      render json: {:kind=>@like.kind}.to_json
+    end
+  end
+
+  def like_params
+    params.permit(:user_id, :article_id, :kind,)
+  end
+  
+end
