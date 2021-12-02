@@ -8,9 +8,9 @@ class Api::V1::FollowsController < Api::V1::ApplicationController
     if params[:follower_id].nil? and params[:user_id].nil?
       query = nil
     elsif params[:user_id].nil?
-      query = "select * from users u where u.id in (select user_id from follows where follower_id="+params[:follower_id]+")" + pagination
+      query = "select * from users u where u.id in (select user_id from follows where follower_id="+params[:follower_id].to_s+")" + pagination
     else
-      query = "select * from users where id in (select follower_id from follows where user_id="+params[:user_id]+")" + pagination
+      query = "select * from users where id in (select follower_id from follows where user_id="+params[:user_id].to_s+")" + pagination
     end
 
     if query.nil?

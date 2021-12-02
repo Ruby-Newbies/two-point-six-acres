@@ -31,8 +31,14 @@ ActiveRecord::Schema.define(version: 20211201210558) do
   end
 
   create_table "follows", force: :cascade do |t|
-    t.string "user_id"
-    t.string "follower_id"
+    t.integer "user_id"
+    t.integer "follower_id"
+  end
+
+  create_table "likes", force: :cascade do |t|
+    t.integer "user_id"
+    t.integer "article_id"
+    t.integer "kind"
   end
 
   create_table "sections", force: :cascade do |t|

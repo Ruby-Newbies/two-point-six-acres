@@ -7,11 +7,14 @@ Rails.application.routes.draw do
       resources :comments, only: [:index, :create, :show, :destroy]
       resources :users, only: [:index, :show, :create, :update, :destroy]
       resources :follows, only: [:index, :create, :destroy]
+      resources :likes, only: [:index, :create, :destroy]
       resources :sections, only: [:index, :show, :create, :destroy]
       resources :usermails, only: [:index, :create, :show, :update]
       post '/authentication/login', to: 'authentication#login'
       get '/authentication/test', to: 'authentication#test'
       get '/follows/isFollowed', to: 'follows#isFollowed'
+      post '/authentication/admin/login', to: 'authentication#adminlogin'
+      post '/likes/count', to: 'likes#countLikes'
       # resources :microposts, only: [:index, :create, :show, :update, :destroy]
       # resources :sessions, only: [:create]
       # scope path: '/user/:user_id' do
