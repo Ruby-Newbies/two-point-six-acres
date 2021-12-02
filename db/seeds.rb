@@ -92,7 +92,7 @@ likes = Like.create([
                       },
                       {
                         user_id: 2,
-                        follower_id: 2,
+                        article_id: 2,
                         kind: 2
                       }
                     ])

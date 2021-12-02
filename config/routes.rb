@@ -14,7 +14,7 @@ Rails.application.routes.draw do
       get '/authentication/test', to: 'authentication#test'
       get '/follows/isFollowed', to: 'follows#isFollowed'
       post '/authentication/admin/login', to: 'authentication#adminlogin'
-      post '/likes/count', to: 'likes#countLikes'
+      get '/likes/count', to: 'likes#countLikes'
       # resources :microposts, only: [:index, :create, :show, :update, :destroy]
       # resources :sessions, only: [:create]
       # scope path: '/user/:user_id' do
