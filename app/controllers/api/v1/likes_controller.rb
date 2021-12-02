@@ -1,5 +1,5 @@
 class Api::V1::LikesController < Api::V1::ApplicationController
-    before_action :authorize_request
+    before_action :authorize_request, except: [:index, :create, :destroy, :countLikes]
     def index
       if params[:user_id].nil? and params[:article_id].nil?
         q = nil
@@ -27,13 +27,9 @@ class Api::V1::LikesController < Api::V1::ApplicationController
       render json: { error: 'already liked/disliked' }, status: :bad_request
     end
   
-    def isLiked
-      @like = Like.find_by(user_id: params[:user_id], article_id: params[:article_id])
-      if @like.nil?
-        render json: { :kind=>0 }.to_json
-      else
-        render json: { :kind=>@like.kind }.to_json
-      end
+    def destroy
+      @like = Like.find_by(user_id: params[:user_id], article_id: params[:article_id], kind: params[:kind])
+      @like.destroy
     end
 
     def countLikes
