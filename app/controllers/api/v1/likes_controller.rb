@@ -1,5 +1,5 @@
 class Api::V1::LikesController < Api::V1::ApplicationController
-    # before_action :authorize_request
+    before_action :authorize_request
     def index
       if params[:user_id].nil? and params[:article_id].nil?
         q = nil
