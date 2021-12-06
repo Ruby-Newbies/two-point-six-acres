@@ -12,15 +12,21 @@ sections = Section.create([
 
 articles = Article.create([
                             {
-                              title: 'New Article',
-                              content: 'This is my new article',
+                              title: 'Looking for 4995 Teammates!',
+                              content: 'Hi all, I am looking for teammates for 4995 course!',
                               author_id: 1,
                               section_id: 1,
                             },
                             {
-                              title: 'New Article',
-                              content: 'This is my new article',
+                              title: 'How to learn Ruby in 3 days',
+                              content: 'Just kidding',
                               author_id: 2,
+                              section_id: 1,
+                            },
+                            {
+                              title: 'Seeking Summer 2022 Internship Opportunities',
+                              content: 'Need help',
+                              author_id: 1,
                               section_id: 2,
                             }
                           ])
@@ -28,8 +34,8 @@ articles = Article.create([
 comments = Comment.create([
                             {
                               article_id: 1,
-                              author_id: 1,
-                              content: "Great",
+                              author_id: 2,
+                              content: "I'm also looking for teammates, how can I contact you?",
                             },
                             {
                               article_id: 2,
@@ -45,14 +51,14 @@ comments = Comment.create([
 
 users = User.create([
                             {
-                              username: 'test1',
-                              email: 'test1@columbia.edu',
+                              username: 'studentA',
+                              email: 'studentA@columbia.edu',
                               password_digest: "123123",
                               role: 'admin',
                             },
                             {
-                              username: 'test2',
-                              email: 'test2@gmail.edu',
+                              username: 'studentB',
+                              email: 'studentB@columbia.edu',
                               password_digest: "456456",
                               role: 'user',
                             }
