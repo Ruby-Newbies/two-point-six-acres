@@ -156,3 +156,8 @@ As users of 2 point 6 acres, currently they can enjoy following features:
 3. Users can add a comment to certain article to make discussion.
 4. Users can avoid outdated comment and mistakes to affect others by deleting existing comments.
 
+### Features regarding follows
+
+1. Users can retrieve all their followers and following users.
+2. Users can follow/unfollow a specific user.
+

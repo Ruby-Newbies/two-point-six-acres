@@ -20,7 +20,7 @@ RSpec.describe Api::V1::AuthenticationController, type: :controller do
   describe "login with correct email and password" do
     it "successfully log in the user and return the token and username" do
       response = post :login,
-                      { :email => "test1@columbia.edu", :password => "123123" }
+                      { :email => "studentA@columbia.edu", :password => "123123" }
       expect(response).to have_http_status(200)
       expect(response.body).to include("token")
       expect(response.body).to include("username")
@@ -30,7 +30,7 @@ RSpec.describe Api::V1::AuthenticationController, type: :controller do
   describe "login with existing email and wrong password" do
     it "returns status code 401 and error message unauthorized" do
       response = post :login,
-                      { :email => "test1@columbia.edu", :password => "456456" }
+                      { :email => "studentB@columbia.edu", :password => "123123" }
       expect(response).to have_http_status(401)
       expect(response.body).to include("unauthorized")
     end
@@ -65,7 +65,7 @@ RSpec.describe Api::V1::AuthenticationController, type: :controller do
   describe "valid Authorization header" do
     it "returns status code 200 and message success" do
       response = post :login,
-                      { :email => "test1@columbia.edu", :password => "123123" }
+                      { :email => "studentA@columbia.edu", :password => "123123" }
       token = JSON.parse(response.body)["token"]
       request.headers["Authorization"] = token
       get :test
