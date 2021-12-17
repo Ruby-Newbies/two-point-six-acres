@@ -16,57 +16,54 @@ if RUBY_VERSION>='2.6.0'
   end
 end
 
-RSpec.describe Api::V1::ArticlesController, type: :controller do
-  describe "list articles without user_id and section" do
-    it "returns the list of articles" do
-      response = get :index
-      expect(response).to have_http_status(200)
-    end
-  end
+RSpec.describe Api::V1::FollowsController, type: :controller do
 
-  describe "list articles with author_id" do
+  describe "list follow list with user_id" do
     it "returns the list of articles with user id" do
       response = get(:index, { user_id: 1 })
       expect(response).to have_http_status(200)
     end
   end
 
-  describe "list articles with section" do
-    it "returns the list of articles filtered by section" do
-      response = get(:index, { section_id: 1 })
+  describe "list follow list with follower_id" do
+    it "returns the list of articles with user id" do
+      response = get(:index, { follower_id: 1 })
       expect(response).to have_http_status(200)
     end
   end
 
-  describe "get article by id" do
-    it "returns an article with certain id" do
-      response = get :show, id: 1
+  describe "list follow list without user_id and follower_id" do
+    it "returns the list of articles with user id" do
+      response = get(:index, {})
       expect(response).to have_http_status(200)
     end
   end
 
-  describe "update an existing article" do
-    it "updates the specified article" do
+
+  describe "create new follow relationship" do
+    it "takes the parameters and return the follow info just post" do
+      # api/v1/follows#create
       request.headers['Authorization'] = token
-      response = patch(:update,id: 2,article: {article_id: "2",author_id: "2",content: "newcontent", section_id: "2"})
+      response = post(:create, {user_id: 2, follower_id: 1})
       puts response
       expect(response).to have_http_status(200)
     end
   end
 
-  describe "post an article" do
-    it "takes the parameters and return the article just post" do
-      # api/v1/articles#create
+  describe "delete an existing follow relation" do
+    it "deletes specified follow relation" do
       request.headers['Authorization'] = token
-      response = post(:create, {title: "test_title",content: "test_content",author_id: 4, section_id: 4,})
+      response = delete :destroy,:id => 1, :user_id=> 1, :follower_id=> 2
       puts response
+      expect(response).to have_http_status(200)
     end
   end
 
-  describe "delete an existing article" do
-    it "deletes specified article" do
+  describe "check user is followed or not" do
+    it "check user is followed or not" do
       request.headers['Authorization'] = token
-      response = delete :destroy,id: 2
+      response = get(:isFollowed, {user_id: 2, follower_id: 1})
+      response = get(:isFollowed, {user_id: 4, follower_id: 2})
       puts response
       expect(response).to have_http_status(200)
     end
