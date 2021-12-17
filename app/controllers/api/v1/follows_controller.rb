@@ -20,7 +20,7 @@ class Api::V1::FollowsController < Api::V1::ApplicationController
     end
 
     @total = @result.length()
-    render json: {:page=>@page, :limit=>@follower_per_page, :total=>@total, :follows=>@result}.to_json
+    render json: {:page=>@page, :limit=>@follower_per_page, :total=>@total, :follows=>@result }.to_json
   end
 
   def create
