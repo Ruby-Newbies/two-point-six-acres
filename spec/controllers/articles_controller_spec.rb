@@ -26,7 +26,7 @@ RSpec.describe Api::V1::ArticlesController, type: :controller do
 
   describe "list articles with author_id" do
     it "returns the list of articles with user id" do
-      response = get(:index, { user_id: 1 })
+      response = get(:index, { author_id: 1 })
       expect(response).to have_http_status(200)
     end
   end
