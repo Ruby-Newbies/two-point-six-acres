@@ -26,3 +26,7 @@ When(/^I get the test api with invalid token$/) do
   header "Authorization", "someinvalidtoken"
   @response = get "/api/v1/authentication/test"
 end
+
+When(/^I post a request to admin login api with email "(.*)" and password "(.*)"$/) do |email, password|
+  @response = post "/api/v1/authentication/admin/login", { :email => email, :password => password }
+end

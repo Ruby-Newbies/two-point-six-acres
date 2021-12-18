@@ -82,4 +82,55 @@ RSpec.describe Api::V1::AuthenticationController, type: :controller do
       expect(response.body).to include("error")
     end
   end
+
+  describe "valid admin login" do
+    it "returns status code 200 and message success" do
+      response = post :adminlogin,
+                      { :email => "studentA@columbia.edu", :password => "123123" }
+      token = JSON.parse(response.body)["token"]
+      request.headers["Authorization"] = token
+      get :test
+      expect(response).to have_http_status(200)
+      expect(response.body).to include("success")
+    end
+  end
+
+  describe "invalid user login as admin" do
+    it "returns status code 401 and error" do
+      response = post :adminlogin,
+                      { :email => "studentB@columbia.edu", :password => "456456" }
+      token = JSON.parse(response.body)["token"]
+      request.headers["Authorization"] = token
+      expect(response).to have_http_status(401)
+      expect(response.body).to include("not admin")
+    end
+  end
+
+  describe "admin login with existing email and wrong password" do
+    it "returns status code 401 and error message unauthorized" do
+      response = post :adminlogin,
+                      { :email => "studentA@columbia.edu", :password => "234234" }
+      expect(response).to have_http_status(401)
+      expect(response.body).to include("unauthorized")
+    end
+  end
+
+  describe "admin login with a non-existing email" do
+    it "returns status code 401 and error message wrong email" do
+      response = post :adminlogin,
+                      { :email => "testtest@columbia.edu", :password => "456456" }
+      expect(response).to have_http_status(401)
+      expect(response.body).to include("wrong email")
+    end
+  end
+
+  describe "admin login with an empty email" do
+    it "returns status code 401 and error message missing input" do
+      response = post :adminlogin,
+                      { :email => "", :password => "111" }
+      expect(response).to have_http_status(401)
+      expect(response.body).to include("missing input")
+    end
+  end
+
 end
