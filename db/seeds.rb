@@ -80,7 +80,7 @@ usermails = Usermail.create([
                         from_user_id: 1,
                         to_user_id: 2,
                         content: "message from 1 to 2",
-                        status: 1,
+                        status: 0,
                       },
                       {
                         from_user_id: 2,
