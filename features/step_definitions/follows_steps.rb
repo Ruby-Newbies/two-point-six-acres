@@ -51,8 +51,8 @@ When(/^I post a request to delete a follow relation with user_id (.*), follower_
 end
 
 Then /^I should receive a response showing the the follow relation deleted: user_id (.*), follower_id (.*)/ do |user_id, follower_id|
-  expect(JSON.parse(@response.body)["follow"]["user_id"]).to eq(user_id)
-  expect(JSON.parse(@response.body)["follow"]["follower_id"]).to eq(follower_id)
+  expect(JSON.parse(@response.body)["follow"]["user_id"]).to eq(user_id.to_i)
+  expect(JSON.parse(@response.body)["follow"]["follower_id"]).to eq(follower_id.to_i)
 end
 
 # isFollowed steps

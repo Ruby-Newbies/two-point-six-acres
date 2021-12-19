@@ -74,6 +74,8 @@ Before running cucumber tests, run the following command to clear the seed data 
 otherwise the background step of articles.feature would fail:
 ```shell
 rake db:reset
+rake db:migrate
+rake db:seed
 ```
 
 Run all cucumber tests:
@@ -89,6 +91,8 @@ Cucumber test coverage:
 
 Before running rspec tests, run the following command to populate the test database with seed data:
 ```shell
+rake db:reset
+rake db:migrate
 rake db:seed RAILS_ENV=test
 ```
 
@@ -114,7 +118,7 @@ Heroku endpoint: https://rocky-retreat-55161.herokuapp.com/#/
 The admin console URL is: https://rocky-retreat-55161.herokuapp.com/#/admin
 
 ## Available Test Account
-email: test1@columbia.edu
+email: studentA@columbia.edu
 password: 123123
 
 ## Features
@@ -167,3 +171,9 @@ As users of 2 point 6 acres, currently they can enjoy following features:
 1. Users can like/dislike an article.
 2. Users can see how many users liked/disliked a specific article.
 3. Users can see whether they have already liked/disliked an article.
+
+### Features regarding mails
+
+1. Users can retrieve all mails they received or just retrieve a mail by its id.
+2. Users can send a mail to a certain user.
+3. After reading the mail, the status will become 1 from 0.
