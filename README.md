@@ -133,8 +133,9 @@ As users of 2 point 6 acres, currently they can enjoy following features:
 1. Almost all REST APIs now requires user authentication. If the user is not logged in, visiting the protected APIs returns 401.
 
 ### Features regarding admin users
-1. Admin users can manage all sections, articles and other users.
-2. A separate frontend admin console /admin.
+1. Valid admin users can login to specific admin web page.
+2. Admin users can manage all sections, articles and other users.
+3. A separate frontend admin console /admin.
 
 ### Features regarding sections
 1. Articles belongs to several sections.
@@ -161,3 +162,8 @@ As users of 2 point 6 acres, currently they can enjoy following features:
 1. Users can retrieve all their followers and following users.
 2. Users can follow/unfollow a specific user.
 
+### Features regarding likes
+
+1. Users can like/dislike an article.
+2. Users can see how many users liked/disliked a specific article.
+3. Users can see whether they have already liked/disliked an article.
