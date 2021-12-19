@@ -59,7 +59,7 @@ When /I read a usermail with usermail_id (.*)/ do |usermail_id|
   @response = patch "/api/v1/usermails/"+usermail_id.to_s, { :status => 1, :from_user_id => from_user_id, :to_user_id => to_user_id, :content=> content}
 end
 
-Then /^I should receive a response with status (.*)/ do |status|
+Then /^I should receive a response with the status (.*)/ do |status|
   expect(JSON.parse(@response.body)["usermail"]["status"]).to eq(status.to_i)
 end
 
