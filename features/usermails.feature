@@ -1,9 +1,9 @@
-Feature: functions regarding comments: add, get and delete comments
+Feature: functions regarding usermails: add, get and update(read) mails
 
   As a user of 2 point 6 acres
-  1. I can retrieve all comments or just retrieve a comment by its author_id.
-  2. I can add a comment to certain article to make discussion.
-  3. I can avoid outdated comment and mistakes to affect others by deleting my comment.
+  1. I can retrieve all usermails I received or just retrieve a mail by its id.
+  2. I can send a mail to certain user.
+  3. After reading the mail, the status will become 1 from 0.
 
   Background: usermails are already in database
   Given the following usermails exist
@@ -24,4 +24,4 @@ Feature: functions regarding comments: add, get and delete comments
 
   Scenario: read a usermail
     When I read a usermail with usermail_id 1
-    Then I should receive a response with status 1
+    Then I should receive a response with the status 1
