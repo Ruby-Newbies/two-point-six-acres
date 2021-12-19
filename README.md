@@ -105,8 +105,6 @@ Rspec test coverage:
 ![coverage stats 1](./rspec-coverage-1.png)
 ![coverage stats 1](./rspec-coverage-2.png)
 
-## Deployment
-
 ## GitHub Repo Link
 Github Link(frontend): https://github.com/Ruby-Newbies/2point6acres-frontend
 
