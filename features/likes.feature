@@ -1,4 +1,4 @@
-Feature: functions regarding follows: create, get, and delete follows
+Feature: functions regarding likes: create, count likes, and check like status
 
   As a user of 2 point 6 acres
   1. I can like/dislike an article

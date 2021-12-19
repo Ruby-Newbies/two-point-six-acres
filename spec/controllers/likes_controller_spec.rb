@@ -89,4 +89,13 @@ RSpec.describe Api::V1::LikesController, type: :controller do
         expect(response).to have_http_status(200)
       end
     end
+
+  describe "see whether a user liked/disliked a specific article" do
+    it "returns the status" do
+        request.headers['Authorization'] = token
+        response = get(:liked, {user_id: 2, article_id: 1})
+        puts response
+        expect(response).to have_http_status(200)
+      end
+    end
 end
